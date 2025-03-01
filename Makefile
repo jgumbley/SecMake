@@ -1,4 +1,4 @@
-export API_KEY=$(shell cat api_key.txt)
+#export API_KEY=$(shell cat api_key.txt)
 
 .DEFAULT_GOAL := ux
 
@@ -12,9 +12,8 @@ define success
 	tput sgr0;
 endef
 
-ux: venv
-	. venv/bin/activate && \
-	python src/ux.py
+ux: auth venv
+	. venv/bin/activate && python test_chronicle_integration.py
 	$(call success)
 
 ext: venv
@@ -32,6 +31,16 @@ venv:
 	. venv/bin/activate && \
 	pip install -r requirements.txt
 	$(call success)
+
+auth:
+	if gcloud auth application-default print-access-token 2>&1 | grep -q "Your default credentials were not found"; then \
+		gcloud auth application-default login; \
+	else \
+		echo "Already authenticated"; \
+	fi
+
+cleanauth:
+	rm -f ~/.config/gcloud/application_default_credentials.json
 
 .PHONY: docs
 docs:

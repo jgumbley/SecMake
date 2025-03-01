@@ -8,6 +8,22 @@ A Makefile-driven security operations framework for elegant AI-supported detecti
 
 SecMake provides a minimalist approach to security operations by leveraging the power of Makefiles to orchestrate detection, analysis, and reporting workflows. Inspired by the simplicity and effectiveness of tools like Snort, SecMake focuses on creating maintainable, version-controlled security processes that bridge the gap between detection rules and actionable intelligence for liability owners.
 
+## Authentication
+
+Before running the samples, you need to authenticate with Google Cloud. Run the following command:
+
+```bash
+make auth
+```
+
+This will open a browser window and prompt you to log in with your Google account.
+
+To remove your stored credentials, run:
+
+```bash
+make cleanauth
+```
+
 ## Philosophy
 
 - **Simplicity**: Clear workflows without unnecessary complexity
