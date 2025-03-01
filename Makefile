@@ -1,6 +1,6 @@
 #export API_KEY=$(shell cat api_key.txt)
 
-.DEFAULT_GOAL := ux
+.DEFAULT_GOAL := connect
 
 define success
 	@tput setaf 2; \
@@ -12,7 +12,7 @@ define success
 	tput sgr0;
 endef
 
-ux: auth venv
+connect: auth venv
 	. venv/bin/activate && python test_chronicle_integration.py
 	$(call success)
 
@@ -40,12 +40,7 @@ auth:
 	fi
 
 cleanauth:
-	rm -f ~/.config/gcloud/application_default_credentials.json
-
-.PHONY: docs
-docs:
-	cd docs; make
-	$(call success)
+	gcloud auth application-default revoke
 
 clean:
 	rm -rf venv

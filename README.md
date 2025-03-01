@@ -2,7 +2,7 @@
 
 > "Complex security workflows, elegantly orchestrated."
 
-A Makefile-driven security operations framework for elegant AI-supported detection workflows.
+A Makefile-driven security operations framework for elegant AI-supported detection workflows. This tool enables Detection as Code.
 
 ## Overview
 
@@ -17,6 +17,8 @@ make auth
 ```
 
 This will open a browser window and prompt you to log in with your Google account.
+
+Note: The Google Cloud SDK (gcloud) is a dependency for authentication. See the documentation [here](https://cloud.google.com/sdk/docs/install).
 
 To remove your stored credentials, run:
 
