@@ -12,9 +12,12 @@ define success
 	tput sgr0;
 endef
 
-connect: auth venv
+connect: venv secops_token.json
 	. venv/bin/activate && python test_chronicle_integration.py
 	$(call success)
+
+secops_token.json:
+	@echo "Please create secops_token.json by following the instructions in tokens.md" && exit 1
 
 ext: venv
 	. venv/bin/activate && \
@@ -39,8 +42,7 @@ auth:
 		echo "Already authenticated"; \
 	fi
 
-cleanauth:
-	gcloud auth application-default revoke
+# Removed - authentication is now handled by secops_token.json
 
 clean:
 	rm -rf venv
